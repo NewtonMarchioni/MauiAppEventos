@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppEventos.Views.ResumoEvento"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="Lavender">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <!-- Cabeçalho -->
+        <Label Text="Resumo do Evento"
+               FontFamily="Chewy"
+               FontSize="30"
+               TextColor="DarkBlue"
+               HorizontalOptions="Center"
+               Margin="0,10,0,5" />
+
+        <!-- Cartão Principal: Nome e Local -->
+        <Frame BackgroundColor="CornflowerBlue" CornerRadius="12" Padding="15" HasShadow="True">
+            <VerticalStackLayout Spacing="8">
+                <Label Text="{Binding Nome}"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="DarkBlue"
+                       HorizontalOptions="CenterAndExpand" />
+
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                    <Label Text="Local:" FontAttributes="Bold" TextColor="DarkBlue" FontSize="15" />
+                    <Label Text="{Binding Local}" TextColor="DarkBlue" FontSize="15" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Cartão 2: Datas e Duração (TimeSpan) -->
+        <Frame BackgroundColor="White" CornerRadius="12" Padding="15" HasShadow="True">
+            <Grid ColumnDefinitions="*, *, *" RowDefinitions="Auto, Auto" RowSpacing="8">
+                <Label Grid.Row="0" Grid.Column="0" Text="Início" FontAttributes="Bold" TextColor="DarkBlue" HorizontalOptions="Center" />
+                <Label Grid.Row="0" Grid.Column="1" Text="Término" FontAttributes="Bold" TextColor="DarkBlue" HorizontalOptions="Center" />
+                <Label Grid.Row="0" Grid.Column="2" Text="Duração" FontAttributes="Bold" TextColor="DarkBlue" HorizontalOptions="Center" />
+
+                <Label Grid.Row="1" Grid.Column="0"
+                       Text="{Binding DataInicio, StringFormat='{0:dd/MM/yyyy}'}"
+                       TextColor="DarkBlue"
+                       HorizontalOptions="Center" />
+
+                <Label Grid.Row="1" Grid.Column="1"
+                       Text="{Binding DataTermino, StringFormat='{0:dd/MM/yyyy}'}"
+                       TextColor="DarkBlue"
+                       HorizontalOptions="Center" />
+
+                <Label Grid.Row="1" Grid.Column="2"
+                       Text="{Binding DuracaoEmDias, StringFormat='{0} dia(s)'}"
+                       FontAttributes="Bold"
+                       TextColor="DarkBlue"
+                       HorizontalOptions="Center" />
+            </Grid>
+        </Frame>
+
+        <!-- Cartão 3: Participantes e Custos -->
+        <Frame BackgroundColor="CornflowerBlue" CornerRadius="12" Padding="15" HasShadow="True">
+            <VerticalStackLayout Spacing="10">
+                <Grid ColumnDefinitions="*, Auto">
+                    <Label Grid.Column="0" Text="Número de Participantes:" TextColor="DarkBlue" FontSize="15" />
+                    <Label Grid.Column="1" Text="{Binding NumeroParticipantes}" TextColor="White" FontSize="15" />
+                </Grid>
+
+                <Grid ColumnDefinitions="*, Auto">
+                    <Label Grid.Column="0" Text="Custo por Participante:" TextColor="DarkBlue" FontSize="15" />
+                    <Label Grid.Column="1" Text="{Binding CustoPorParticipante, StringFormat='{0:C}'}" TextColor="White" FontSize="15" />
+                </Grid>
+
+                <BoxView HeightRequest="1" Color="#E2E8F0" Margin="0,5" />
+
+                <Grid ColumnDefinitions="*, Auto">
+                    <Label Grid.Column="0" Text="Custo Total do Evento:" FontAttributes="Bold" TextColor="#1E3A8A" FontSize="17" />
+                    <Label Grid.Column="1" Text="{Binding CustoTotal, StringFormat='{0:C}'}" FontAttributes="Bold" TextColor="White" FontSize="18" />
+                </Grid>
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Botões de Ação -->
+        <VerticalStackLayout Spacing="10" Margin="0,10,0,10">
+            <Button Text="Alterar dados do evento"
+                    Clicked="BtnAlterar_Clicked"
+                    BackgroundColor="CornflowerBlue"
+                    TextColor="DarkBlue"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    CornerRadius="10"
+                    HeightRequest="50" />
+
+            <Button Text="Novo Cadastro"
+                    Clicked="BtnNovoCadastro_Clicked"
+                    BackgroundColor="CornflowerBlue"
+                    TextColor="DarkBlue"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    CornerRadius="10"
+                    HeightRequest="50" />
+        </VerticalStackLayout>
+
+    </VerticalStackLayout>
+</ContentPage>
